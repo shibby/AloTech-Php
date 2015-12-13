@@ -1,5 +1,6 @@
 {
   "name": "shibby/alotech-php",
+  "license": "AGPL-3+",
   "description": "Alo-tech api php uygulaması",
   "keywords": [
     "alotech",
