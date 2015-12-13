@@ -1,0 +1,25 @@
+{
+  "name": "shibby/alotech-php",
+  "description": "Alo-tech api php uygulaması",
+  "keywords": [
+    "alotech",
+    "alo-tech"
+  ],
+  "homepage": "https://github.com/shibby/AloTech-Php",
+  "authors": [
+    {
+      "name": "Güven Atbakan",
+      "email": "guvenatbakan@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "guzzlehttp/guzzle": "^6.1"
+  },
+  "autoload": {
+    "psr-0": {
+      "AloTech": "src/"
+    }
+  }
+}
