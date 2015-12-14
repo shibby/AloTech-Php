@@ -72,6 +72,16 @@ class Api
     }
 
     /**
+     * You can test your keys with this function
+     * @return $this
+     */
+    public function getCampaignList()
+    {
+        $this->parameters['function'] = 'getcampaignlist';
+        return $this;
+    }
+
+    /**
      * Get user details with email
      * @param string $userId Mandatory. Username (Email) of the user.
      * @return $this
@@ -86,7 +96,7 @@ class Api
     /**
      * Adds a new contact to Dialer Campaign.
      *
-     * @param integer $campaign Mandatory. Unique ID of the contact on Alotech platform.
+     * @param string $campaign Mandatory. Unique ID of the contact on Alotech platform.
      * @param string $uniqueId Optional. A uniqueid value to match the contact on reports.
      * @param string $name Optional. Name of the contact.
      * @param string $surname Optional. Surname of the contact.
@@ -132,10 +142,11 @@ class Api
     {
         $url = $this->apiUrl . "?" . http_build_query($this->parameters);
 
+        die($url);
         $guzzle = new \GuzzleHttp\Client();
         $request = $guzzle->request('GET', $url);
         if ($request->getStatusCode() != "200") {
-            throw new \Exception("Sunucuya istek gönderilemedi. Kahrolsun bağzı hatalar");
+            throw new \Exception("Sunucuya kelek yaptı.");
         }
 
         $result = (array)json_decode($request->getBody());
