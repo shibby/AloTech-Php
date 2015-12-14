@@ -122,10 +122,10 @@ class Api
         $this->parameters['name'] = $name;
         $this->parameters['surname'] = $surname;
         $this->parameters['email'] = $email;
-        $this->parameters['homePhone'] = $homePhone;
-        $this->parameters['businessPhone'] = $businessPhone;
-        $this->parameters['mobilePhone'] = $mobilePhone;
-        $this->parameters['customerPhone'] = $customerPhone;
+        $this->parameters['homephone'] = $homePhone;
+        $this->parameters['businessphone'] = $businessPhone;
+        $this->parameters['mobilephone'] = $mobilePhone;
+        $this->parameters['customerphone'] = $customerPhone;
         $this->parameters['listName'] = $listName;
         if ($customFields) {
             $this->parameters['customFields'] = json_encode($customFields);
@@ -142,18 +142,24 @@ class Api
     {
         $url = $this->apiUrl . "?" . http_build_query($this->parameters);
 
-        die($url);
         $guzzle = new \GuzzleHttp\Client();
         $request = $guzzle->request('GET', $url);
+
         if ($request->getStatusCode() != "200") {
-            throw new \Exception("Sunucuya kelek yaptı.");
+            $this->status == 'error';
+            $this->message == 'Sunucu kelek yaptı!!1';
+            return $this->formatResponse();
         }
 
         $result = (array)json_decode($request->getBody());
 
 
-        if (isset($result['success']) && $result['success'] == 1) {
-            $this->status = 'success';
+        if (isset($result['success'])) {
+            if ($result['success'] == 1) {
+                $this->status = 'success';
+            } else {
+                $this->status = 'error';
+            }
         } else {
             $this->status = 'error';
         }
